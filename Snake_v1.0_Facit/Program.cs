@@ -4,6 +4,9 @@
     {
         static void Main(string[] args)
         {
+            int xPosition = 35; // spelarea = 70 bred
+            int yPosition = 20; // spelarea = 40 hög
+
             // Visa snake på skrämen
 
             // Flytta på snake
