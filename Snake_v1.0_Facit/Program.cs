@@ -7,6 +7,8 @@
             int xPosition = 35; // spelarea = 70 bred
             int yPosition = 20; // spelarea = 40 hög
 
+            bool isGameOn = true;
+
             // Visa snake på skrämen
             Console.SetCursorPosition(xPosition, yPosition);
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -16,6 +18,40 @@
             BuildWall();
 
             // Flytta på snake
+            ConsoleKey command = Console.ReadKey().Key;
+
+            do
+            {
+                switch (command)
+                {
+                    case ConsoleKey.LeftArrow:
+                        Console.SetCursorPosition(yPosition, xPosition);
+                        Console.Write(" ");
+                        xPosition--;
+                        break;
+                    case ConsoleKey.UpArrow:
+                        Console.SetCursorPosition(yPosition, xPosition);
+                        Console.Write(" ");
+                        yPosition--;
+                        break;
+                    case ConsoleKey.RightArrow:
+                        Console.SetCursorPosition(yPosition, xPosition);
+                        Console.Write(" ");
+                        xPosition++;
+                        break;
+                    case ConsoleKey.DownArrow:
+                        Console.SetCursorPosition(yPosition, xPosition);
+                        Console.Write(" ");
+                        yPosition++;
+                        break;
+                }
+
+                // Visa snake på skrämen
+                Console.SetCursorPosition(xPosition, yPosition);
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("ö");
+
+            } while (isGameOn);
 
             // Känner av när snake träffa väggen
 
