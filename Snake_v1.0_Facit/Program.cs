@@ -8,6 +8,10 @@
             int yPosition = 20; // spelarea = 40 hög
 
             // Visa snake på skrämen
+            Console.SetCursorPosition(xPosition, yPosition);
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("ö");
+
 
             // Flytta på snake
 
