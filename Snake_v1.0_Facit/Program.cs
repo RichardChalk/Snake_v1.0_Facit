@@ -8,6 +8,7 @@
             int yPosition = 20; // spelarea = 40 hög
 
             bool isGameOn = true;
+            bool isWallHit = false;
 
             // Visa snake på skrämen
             Console.SetCursorPosition(xPosition, yPosition);
@@ -51,16 +52,29 @@
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("ö");
 
+                // Känner av när snake träffa väggen
+                // Slow game down
+                isWallHit = DidSnakeHitWall(xPosition, yPosition);
+
+                if (isWallHit)
+                {
+                    isGameOn = false;
+                    Console.SetCursorPosition(28, 20);
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Game Over");
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
             } while (isGameOn);
 
-            // Känner av när snake träffa väggen
+
+
 
             // Placera äpple random ställe på skärmen
 
             // Känner av när äpplet har ätits
-                // Gör snake snabbare
-                // Gör snake längre
-                // Lägg antalet uppätna äpplen i en variabel (score)
+            // Gör snake snabbare
+            // Gör snake längre
+            // Lägg antalet uppätna äpplen i en variabel (score)
 
             // Gör en välkomstskärm (meny)
 
@@ -69,6 +83,15 @@
             // Visa final score
 
             // Låt spelaren välja att spela igen
+        }
+
+        private static bool DidSnakeHitWall(int xPosition, int yPosition)
+        {
+            if (xPosition == 1 || xPosition == 70 || yPosition == 1 || yPosition == 40)
+            {
+                return true;
+            }
+            return false;
         }
 
         private static void BuildWall()
