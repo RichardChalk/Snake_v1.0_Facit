@@ -4,7 +4,26 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            // Visa snake på skrämen
+
+            // Flytta på snake
+
+            // Känner av när snake träffa väggen
+
+            // Placera äpple random ställe på skärmen
+
+            // Känner av när äpplet har ätits
+                // Gör snake snabbare
+                // Gör snake längre
+                // Lägg antalet uppätna äpplen i en variabel (score)
+
+            // Gör en välkomstskärm (meny)
+
+            // Låt spelaren läser instruktionerna om han vill
+
+            // Visa final score
+
+            // Låt spelaren välja att spela igen
         }
     }
 }
