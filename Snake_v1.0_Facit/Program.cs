@@ -27,22 +27,22 @@
                 switch (command)
                 {
                     case ConsoleKey.LeftArrow:
-                        Console.SetCursorPosition(yPosition, xPosition);
+                        Console.SetCursorPosition(xPosition, yPosition);
                         Console.Write(" ");
                         xPosition--;
                         break;
                     case ConsoleKey.UpArrow:
-                        Console.SetCursorPosition(yPosition, xPosition);
+                        Console.SetCursorPosition(xPosition, yPosition);
                         Console.Write(" ");
                         yPosition--;
                         break;
                     case ConsoleKey.RightArrow:
-                        Console.SetCursorPosition(yPosition, xPosition);
+                        Console.SetCursorPosition(xPosition, yPosition);
                         Console.Write(" ");
                         xPosition++;
                         break;
                     case ConsoleKey.DownArrow:
-                        Console.SetCursorPosition(yPosition, xPosition);
+                        Console.SetCursorPosition(xPosition, yPosition);
                         Console.Write(" ");
                         yPosition++;
                         break;
