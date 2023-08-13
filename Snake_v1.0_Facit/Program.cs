@@ -6,6 +6,7 @@
         {
             int xPosition = 35; // spelarea = 70 bred
             int yPosition = 20; // spelarea = 40 hög
+            int gameSpeed = 150;
 
             bool isGameOn = true;
             bool isWallHit = false;
@@ -64,6 +65,9 @@
                     Console.WriteLine("Game Over");
                     Console.ForegroundColor = ConsoleColor.White;
                 }
+
+                if (Console.KeyAvailable) command = Console.ReadKey().Key;
+                System.Threading.Thread.Sleep(gameSpeed);    
             } while (isGameOn);
 
 
@@ -96,7 +100,7 @@
 
         private static void BuildWall()
         {
-            // OBS: Måste se till att ditt console förnster är rätt storlek
+            // OBS: Måste se till att ditt console fönster är rätt storlek
             // Min är satt till 120 * 60
             // Högerklick på console fönstret -> settings
             // Under Startup -> Launch Size
