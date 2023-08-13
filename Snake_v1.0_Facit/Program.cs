@@ -60,10 +60,11 @@
                 if (isWallHit)
                 {
                     isGameOn = false;
-                    Console.SetCursorPosition(28, 20);
+                    Console.SetCursorPosition(32, 20);
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Game Over");
                     Console.ForegroundColor = ConsoleColor.White;
+                    Console.SetCursorPosition(1, 42);
                 }
 
                 if (Console.KeyAvailable) command = Console.ReadKey().Key;
