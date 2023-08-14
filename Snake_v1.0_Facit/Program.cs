@@ -6,15 +6,25 @@
         {
             int xPosition = 35; // spelarea = 70 bred
             int yPosition = 20; // spelarea = 40 hög
+            int xPositionApple = 10;
+            int yPositionApple = 10;
+            Random random = new Random();
+
             int gameSpeed = 150;
 
             bool isGameOn = true;
             bool isWallHit = false;
+            bool isAppleEaten = false;
 
             // Visa snake på skrämen
             Console.SetCursorPosition(xPosition, yPosition);
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("ö");
+
+            // Placera FÖRSTA äpplet random ställe på skärmen
+            // out - ändrar de globala variabler också (inte bara de lokala inom metoden)
+            SetApplePositionOnScreen(random, out xPositionApple, out yPositionApple);
+            PaintApple(xPositionApple, yPositionApple);
 
             // Rita border
             BuildWall();
@@ -67,14 +77,22 @@
                     Console.SetCursorPosition(1, 42);
                 }
 
+                if (isAppleEaten)
+                {
+                    // Placera äpple random ställe på skärmen
+                    // out - ändrar de globala variabler också (inte bara de lokala inom metoden)
+                    SetApplePositionOnScreen(random, out xPositionApple, out yPositionApple);
+                    PaintApple(xPositionApple, yPositionApple);
+                }
+
                 if (Console.KeyAvailable) command = Console.ReadKey().Key;
-                System.Threading.Thread.Sleep(gameSpeed);    
+                System.Threading.Thread.Sleep(gameSpeed);
             } while (isGameOn);
 
 
 
 
-            // Placera äpple random ställe på skärmen
+
 
             // Känner av när äpplet har ätits
             // Gör snake snabbare
@@ -88,6 +106,20 @@
             // Visa final score
 
             // Låt spelaren välja att spela igen
+        }
+
+        private static void PaintApple(int xPositionApple, int yPositionApple)
+        {
+            Console.SetCursorPosition(xPositionApple, yPositionApple);
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write("@");
+        }
+
+        private static void SetApplePositionOnScreen(Random random, out int xPositionApple, out int yPositionApple)
+        {
+            // +2 -2 används för att äåålet ska skapas INOM spelarenan!
+            xPositionApple = random.Next(0 + 2, 70 - 2);
+            yPositionApple = random.Next(0 + 2, 40 - 2);
         }
 
         private static bool DidSnakeHitWall(int xPosition, int yPosition)
