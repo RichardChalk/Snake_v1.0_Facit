@@ -4,6 +4,9 @@
     {
         static void Main(string[] args)
         {
+            // Att lägga till regions kan göra koden lättare att läsa
+            // Nu får jag möjlighet att "kollapsa" denna region om jag vill
+            #region Variables
             // spelarea = 70 bred
             // spelarea = 40 hög
 
@@ -20,7 +23,9 @@
 
             // Ta bort cursor... endast estetiskt
             Console.CursorVisible = false;
+            #endregion
 
+            #region Game Setup
             decimal gameSpeed = 150m;
 
             bool isGameOn = true;
@@ -38,11 +43,14 @@
             // Rita border
             BuildWall();
 
-            // Flytta på snake
+            // Läs instruktion från användaren
             ConsoleKey command = Console.ReadKey().Key;
+            #endregion
 
+            // Flytta på snake
             do
             {
+                #region Change Directions
                 switch (command)
                 {
                     case ConsoleKey.LeftArrow:
@@ -67,6 +75,9 @@
                         break;
                 }
 
+                #endregion
+
+                #region Playing Game
                 // Visa new snake array på skrämen
                 PaintSnake(applesEaten, xPosition, yPosition, out xPosition, out yPosition);
 
@@ -103,6 +114,8 @@
 
                 // Slow game down
                 System.Threading.Thread.Sleep(Convert.ToInt32(gameSpeed));
+
+                #endregion
             } while (isGameOn);
 
 
@@ -124,6 +137,7 @@
             // Låt spelaren välja att spela igen
         }
 
+        #region Methods
         private static void PaintSnake(int applesEaten, int[] xPositionIn, int[] yPositionIn, out int[] xPositionOut, out int[] yPositionOut)
         {
             // Rita ut snake huvud
@@ -210,5 +224,6 @@
                 Console.Write("#");
             }
         }
+        #endregion
     }
 }
