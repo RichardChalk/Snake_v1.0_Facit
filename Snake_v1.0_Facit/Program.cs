@@ -4,8 +4,15 @@
     {
         static void Main(string[] args)
         {
-            int xPosition = 35; // spelarea = 70 bred
-            int yPosition = 20; // spelarea = 40 hög
+            // spelarea = 70 bred
+            // spelarea = 40 hög
+
+            // start position av snake är mitt i spelarenan! 70/2 & 40/2
+            int[] xPosition = new int[50];
+            xPosition[0] = 35;
+            int[] yPosition = new int[50];
+            yPosition[0] = 20;
+                        
             int xPositionApple = 10;
             int yPositionApple = 10;
             int applesEaten = 0;
@@ -18,7 +25,7 @@
             bool isAppleEaten = false;
 
             // Visa snake på skrämen
-            Console.SetCursorPosition(xPosition, yPosition);
+            Console.SetCursorPosition(xPosition[0], yPosition[0]);
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("ö");
 
@@ -38,24 +45,24 @@
                 switch (command)
                 {
                     case ConsoleKey.LeftArrow:
-                        Console.SetCursorPosition(xPosition, yPosition);
+                        Console.SetCursorPosition(xPosition[0], yPosition[0]);
                         Console.Write(" ");
-                        xPosition--;
+                        xPosition[0]--;
                         break;
                     case ConsoleKey.UpArrow:
-                        Console.SetCursorPosition(xPosition, yPosition);
+                        Console.SetCursorPosition(xPosition[0], yPosition[0]);
                         Console.Write(" ");
-                        yPosition--;
+                        yPosition[0]--;
                         break;
                     case ConsoleKey.RightArrow:
-                        Console.SetCursorPosition(xPosition, yPosition);
+                        Console.SetCursorPosition(xPosition[0], yPosition[0]);
                         Console.Write(" ");
-                        xPosition++;
+                        xPosition[0]++;
                         break;
                     case ConsoleKey.DownArrow:
-                        Console.SetCursorPosition(xPosition, yPosition);
+                        Console.SetCursorPosition(xPosition[0], yPosition[0]);
                         Console.Write(" ");
-                        yPosition++;
+                        yPosition[0]++;
                         break;
                 }
 
@@ -64,9 +71,9 @@
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("ö");
 
-                // Känner av när snake träffa väggen
+                // Känner av när snake (head) träffa väggen
                 // Slow game down
-                isWallHit = DidSnakeHitWall(xPosition, yPosition);
+                isWallHit = DidSnakeHitWall(xPosition[0], yPosition[0]);
 
                 if (isWallHit)
                 {
@@ -79,7 +86,7 @@
                 }
 
                 // Känner av om äpplet har ätits upp av snake
-                isAppleEaten = DetermineIfAppleIsEaten(xPosition, yPosition, xPositionApple, yPositionApple);
+                isAppleEaten = DetermineIfAppleIsEaten(xPosition[0], yPosition[0], xPositionApple, yPositionApple);
                 
                 if (isAppleEaten)
                 {
