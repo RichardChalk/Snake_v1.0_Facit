@@ -66,10 +66,8 @@
                         break;
                 }
 
-                // Visa snake på skrämen
-                Console.SetCursorPosition(xPosition, yPosition);
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("ö");
+                // Visa new snake array på skrämen
+                PaintSnake(applesEaten, xPosition, yPosition, out xPosition, out yPosition);
 
                 // Känner av när snake (head) träffa väggen
                 isWallHit = DidSnakeHitWall(xPosition[0], yPosition[0]);
@@ -123,6 +121,21 @@
             // Visa final score
 
             // Låt spelaren välja att spela igen
+        }
+
+        private static void PaintSnake(int applesEaten, int[] xPositionIn, int[] yPositionIn, out int[] xPositionOut, out int[] yPositionOut)
+        {
+            // Rita ut snake huvud
+
+            // Rita ut snake kropp
+
+            // Radera svansen av snake
+
+            // Notera varje del av snake
+
+            // Returnera snake nya position
+            xPositionOut = xPositionIn;
+            yPositionOut = yPositionIn;
         }
 
         private static bool DetermineIfAppleIsEaten(int xPosition, int yPosition, int xPositionApple, int yPositionApple)
