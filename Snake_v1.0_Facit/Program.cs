@@ -25,7 +25,7 @@
             Console.CursorVisible = false;
 
             string userAction = " ";
-            
+
             decimal gameSpeed = 150m;
 
             bool isGameOn = true;
@@ -35,136 +35,152 @@
             #endregion
 
             #region Call Menu
-            // Gör en välkomstskärm (meny)
-            // Låt spelaren läser instruktionerna om han vill
-            ShowMenu(out userAction);
-            switch (userAction)
+            do
             {
-                case "1":
-                    ShowInstructions(userAction);
-                    break;
-                case "2":
-                    Console.Clear();
-                    #region Game Setup
-                    // Visa new snake array på skrämen
-                    PaintSnake(applesEaten, xPosition, yPosition, out xPosition, out yPosition);
+                // Gör en välkomstskärm (meny)
+                // Låt spelaren läser instruktionerna om han vill
+                ShowMenu(out userAction);
 
-                    // Placera FÖRSTA äpplet random ställe på skärmen
-                    // out - ändrar de globala variabler också (inte bara de lokala inom metoden)
-                    SetApplePositionOnScreen(random, out xPositionApple, out yPositionApple);
-                    PaintApple(xPositionApple, yPositionApple);
+                // Om spelare väljer att spela igen...
+                // Reset snake
+                xPosition = new int[50];
+                xPosition[0] = 35;
+                yPosition = new int[50];
+                yPosition[0] = 20;
+                // Reset även denna
+                isGameOn = true;
 
-                    // Rita border
-                    BuildWall();
-
-                    // Läs instruktion från användaren
-                    ConsoleKey command = Console.ReadKey().Key;
-                    #endregion
-
-                    #region Game Loop
-                    // Flytta på snake
-                    do
-                    {
-                        #region Change Directions
-                        switch (command)
-                        {
-                            case ConsoleKey.LeftArrow:
-                                Console.SetCursorPosition(xPosition[0], yPosition[0]);
-                                Console.Write(" ");
-                                xPosition[0]--;
-                                break;
-                            case ConsoleKey.UpArrow:
-                                Console.SetCursorPosition(xPosition[0], yPosition[0]);
-                                Console.Write(" ");
-                                yPosition[0]--;
-                                break;
-                            case ConsoleKey.RightArrow:
-                                Console.SetCursorPosition(xPosition[0], yPosition[0]);
-                                Console.Write(" ");
-                                xPosition[0]++;
-                                break;
-                            case ConsoleKey.DownArrow:
-                                Console.SetCursorPosition(xPosition[0], yPosition[0]);
-                                Console.Write(" ");
-                                yPosition[0]++;
-                                break;
-                        }
-                        #endregion
-
-                        #region Playing Game
+                switch (userAction)
+                {
+                    case "1":
+                        ShowInstructions(userAction);
+                        break;
+                    case "2":
+                        Console.Clear();
+                        #region Game Setup
                         // Visa new snake array på skrämen
                         PaintSnake(applesEaten, xPosition, yPosition, out xPosition, out yPosition);
 
-                        // Känner av när snake (head) träffa väggen
-                        isWallHit = DidSnakeHitWall(xPosition[0], yPosition[0]);
+                        // Placera FÖRSTA äpplet random ställe på skärmen
+                        // out - ändrar de globala variabler också (inte bara de lokala inom metoden)
+                        SetApplePositionOnScreen(random, out xPositionApple, out yPositionApple);
+                        PaintApple(xPositionApple, yPositionApple);
 
-                        if (isWallHit)
-                        {
-                            isGameOn = false;
-                            Console.SetCursorPosition(32, 20);
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine("Game Over");
+                        // Rita border
+                        BuildWall();
 
-                            // Visa final score
-                            Console.SetCursorPosition(30, 22);
-                            Console.ForegroundColor = ConsoleColor.White;
-                            Console.Write(@"Din score är ");
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            Console.Write(applesEaten);
-                            Console.ForegroundColor = ConsoleColor.White;
-                            Console.SetCursorPosition(20, 24);
-                            Console.WriteLine("Tryck på valfri knapp för att fortsätta");
-                            applesEaten= 0;
-                            Console.ReadLine();
-                            Console.Clear();
-                            // Låt spelaren välja att spela igen
-                            ShowMenu(out userAction);
-
-                            Console.ForegroundColor = ConsoleColor.White;
-                            Console.SetCursorPosition(1, 42);
-                        }
-
-                        // Känner av om äpplet har ätits upp av snake
-                        isAppleEaten = DetermineIfAppleIsEaten(xPosition[0], yPosition[0], xPositionApple, yPositionApple);
-
-                        if (isAppleEaten)
-                        {
-                            // Placera äpple random ställe på skärmen
-                            // out - ändrar de globala variabler också (inte bara de lokala inom metoden)
-                            SetApplePositionOnScreen(random, out xPositionApple, out yPositionApple);
-                            PaintApple(xPositionApple, yPositionApple);
-
-                            // Lägg antalet uppätna äpplen i en variabel (score)
-                            applesEaten++;
-                            // Gör snake snabbare
-                            gameSpeed *= .925m;
-                        }
-
-                        if (Console.KeyAvailable) command = Console.ReadKey().Key;
-
-                        // Slow game down
-                        System.Threading.Thread.Sleep(Convert.ToInt32(gameSpeed));
-
+                        // Läs instruktion från användaren
+                        ConsoleKey command = Console.ReadKey().Key;
                         #endregion
-                    } while (isGameOn);
-                    #endregion
-                    break;
-                case "3":
-                    break;
-                default:
-                    Console.WriteLine("Inte ett giltigt val. Försök igen");
-                    Console.ReadLine();
-                    Console.Clear();
-                    ShowMenu(out userAction);
-                    break;
-            }
-            #endregion
-   }
 
-       
+                        #region Game Loop
+                        // Flytta på snake
+                        do
+                        {
+                            #region Change Directions
+                            switch (command)
+                            {
+                                case ConsoleKey.LeftArrow:
+                                    Console.SetCursorPosition(xPosition[0], yPosition[0]);
+                                    Console.Write(" ");
+                                    xPosition[0]--;
+                                    break;
+                                case ConsoleKey.UpArrow:
+                                    Console.SetCursorPosition(xPosition[0], yPosition[0]);
+                                    Console.Write(" ");
+                                    yPosition[0]--;
+                                    break;
+                                case ConsoleKey.RightArrow:
+                                    Console.SetCursorPosition(xPosition[0], yPosition[0]);
+                                    Console.Write(" ");
+                                    xPosition[0]++;
+                                    break;
+                                case ConsoleKey.DownArrow:
+                                    Console.SetCursorPosition(xPosition[0], yPosition[0]);
+                                    Console.Write(" ");
+                                    yPosition[0]++;
+                                    break;
+                            }
+                            #endregion
+
+                            #region Playing Game
+                            // Visa new snake array på skrämen
+                            PaintSnake(applesEaten, xPosition, yPosition, out xPosition, out yPosition);
+
+                            // Känner av när snake (head) träffa väggen
+                            isWallHit = DidSnakeHitWall(xPosition[0], yPosition[0]);
+
+                            if (isWallHit)
+                            {
+                                isGameOn = false;
+                                Console.SetCursorPosition(32, 20);
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine("Game Over");
+
+                                // Visa final score
+                                Console.SetCursorPosition(30, 22);
+                                Console.ForegroundColor = ConsoleColor.White;
+                                Console.Write(@"Din score är ");
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.Write(applesEaten);
+                                Console.ForegroundColor = ConsoleColor.White;
+                                Console.SetCursorPosition(20, 24);
+                                Console.WriteLine("Tryck på valfri knapp för att fortsätta");
+                                applesEaten = 0;
+                                Console.ReadLine();
+                                Console.Clear();
+
+                                // Låt spelaren välja att spela igen
+                                // ShowMenu(out userAction);
+
+                                Console.ForegroundColor = ConsoleColor.White;
+                                Console.SetCursorPosition(1, 42);
+                            }
+
+                            // Känner av om äpplet har ätits upp av snake
+                            isAppleEaten = DetermineIfAppleIsEaten(xPosition[0], yPosition[0], xPositionApple, yPositionApple);
+
+                            if (isAppleEaten)
+                            {
+                                // Placera äpple random ställe på skärmen
+                                // out - ändrar de globala variabler också (inte bara de lokala inom metoden)
+                                SetApplePositionOnScreen(random, out xPositionApple, out yPositionApple);
+                                PaintApple(xPositionApple, yPositionApple);
+
+                                // Lägg antalet uppätna äpplen i en variabel (score)
+                                applesEaten++;
+                                // Gör snake snabbare
+                                gameSpeed *= .925m;
+                            }
+
+                            if (Console.KeyAvailable) command = Console.ReadKey().Key;
+
+                            // Slow game down
+                            System.Threading.Thread.Sleep(Convert.ToInt32(gameSpeed));
+
+                            #endregion
+                        } while (isGameOn);
+                        #endregion
+                        break;
+                    case "3":
+                        isStayInMenu = false;
+                        break;
+                    default:
+                        Console.WriteLine("Inte ett giltigt val. Försök igen");
+                        Console.ReadLine();
+                        Console.Clear();
+                        // ShowMenu(out userAction);
+                        break;
+                }
+            } while (isStayInMenu);
+            #endregion
+        }
+
+
         #region Menu
         private static void ShowMenu(out string userAction)
         {
+            Console.Clear();
             Console.WriteLine("1: How to play");
             Console.WriteLine("2: Play");
             Console.WriteLine("3: Exit");
@@ -188,7 +204,7 @@
             Console.WriteLine("Tryck på valfri knapp för att fortsätta");
             Console.ReadLine();
             Console.Clear();
-            ShowMenu(out userAction);
+            //ShowMenu(out userAction);
         }
         #endregion
 
