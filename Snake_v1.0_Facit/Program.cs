@@ -8,9 +8,10 @@
             int yPosition = 20; // spelarea = 40 hög
             int xPositionApple = 10;
             int yPositionApple = 10;
+            int applesEaten = 0;
             Random random = new Random();
 
-            int gameSpeed = 150;
+            decimal gameSpeed = 150m;
 
             bool isGameOn = true;
             bool isWallHit = false;
@@ -77,16 +78,24 @@
                     Console.SetCursorPosition(1, 42);
                 }
 
+                // Känner av om äpplet har ätits upp av snake
+                isAppleEaten = DetermineIfAppleIsEaten(xPosition, yPosition, xPositionApple, yPositionApple);
+                
                 if (isAppleEaten)
                 {
                     // Placera äpple random ställe på skärmen
                     // out - ändrar de globala variabler också (inte bara de lokala inom metoden)
                     SetApplePositionOnScreen(random, out xPositionApple, out yPositionApple);
                     PaintApple(xPositionApple, yPositionApple);
+
+                    // Lägg antalet uppätna äpplen i en variabel (score)
+                    applesEaten++;
+                    // Gör snake snabbare
+                    gameSpeed *= .925m;
                 }
 
                 if (Console.KeyAvailable) command = Console.ReadKey().Key;
-                System.Threading.Thread.Sleep(gameSpeed);
+                System.Threading.Thread.Sleep(Convert.ToInt32(gameSpeed));
             } while (isGameOn);
 
 
@@ -94,10 +103,10 @@
 
 
 
-            // Känner av när äpplet har ätits
-            // Gör snake snabbare
+            
+            
             // Gör snake längre
-            // Lägg antalet uppätna äpplen i en variabel (score)
+            
 
             // Gör en välkomstskärm (meny)
 
@@ -106,6 +115,12 @@
             // Visa final score
 
             // Låt spelaren välja att spela igen
+        }
+
+        private static bool DetermineIfAppleIsEaten(int xPosition, int yPosition, int xPositionApple, int yPositionApple)
+        {
+            // Om snake huvud är på samma position som ett äpple... ät det!
+            if (xPosition == xPositionApple && yPosition == yPositionApple) return true; return false;
         }
 
         private static void PaintApple(int xPositionApple, int yPositionApple)
