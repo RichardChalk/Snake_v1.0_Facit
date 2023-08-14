@@ -23,17 +23,20 @@
 
             // Ta bort cursor... endast estetiskt
             Console.CursorVisible = false;
-            
 
+            string userAction = " ";
             
             decimal gameSpeed = 150m;
 
             bool isGameOn = true;
             bool isWallHit = false;
             bool isAppleEaten = false;
+            bool isStayInMenu = true;
             #endregion
 
-
+            // Gör en välkomstskärm (meny)
+            // Låt spelaren läser instruktionerna om han vill
+            ShowMenu(out userAction);
 
             #region Game Setup
             // Visa new snake array på skrämen
@@ -132,14 +135,23 @@
 
 
 
-            // Gör en välkomstskärm (meny)
-
-            // Låt spelaren läser instruktionerna om han vill
+            
 
             // Visa final score
 
             // Låt spelaren välja att spela igen
         }
+        #region Menu
+        private static void ShowMenu(out string userAction)
+        {
+            Console.WriteLine("1: How to play");
+            Console.WriteLine("2: Play");
+            Console.WriteLine("3: Exit");
+
+            userAction = Console.ReadLine().ToLower();
+        }
+        #endregion
+
 
         #region Methods
         private static void PaintSnake(int applesEaten, int[] xPositionIn, int[] yPositionIn, out int[] xPositionOut, out int[] yPositionOut)
