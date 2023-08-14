@@ -104,6 +104,22 @@
                             Console.SetCursorPosition(32, 20);
                             Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine("Game Over");
+
+                            // Visa final score
+                            Console.SetCursorPosition(30, 22);
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.Write(@"Din score är ");
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.Write(applesEaten);
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.SetCursorPosition(20, 24);
+                            Console.WriteLine("Tryck på valfri knapp för att fortsätta");
+                            applesEaten= 0;
+                            Console.ReadLine();
+                            Console.Clear();
+                            // Låt spelaren välja att spela igen
+                            ShowMenu(out userAction);
+
                             Console.ForegroundColor = ConsoleColor.White;
                             Console.SetCursorPosition(1, 42);
                         }
@@ -143,23 +159,7 @@
                     break;
             }
             #endregion
-
-  
-
-
-
-
-
-
-
-
-
-            
-
-            // Visa final score
-
-            // Låt spelaren välja att spela igen
-        }
+   }
 
        
         #region Menu
