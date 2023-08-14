@@ -23,15 +23,19 @@
 
             // Ta bort cursor... endast estetiskt
             Console.CursorVisible = false;
-            #endregion
+            
 
-            #region Game Setup
+            
             decimal gameSpeed = 150m;
 
             bool isGameOn = true;
             bool isWallHit = false;
             bool isAppleEaten = false;
+            #endregion
 
+
+
+            #region Game Setup
             // Visa new snake array på skrämen
             PaintSnake(applesEaten, xPosition, yPosition, out xPosition, out yPosition);
 
@@ -47,6 +51,7 @@
             ConsoleKey command = Console.ReadKey().Key;
             #endregion
 
+            #region Game Loop
             // Flytta på snake
             do
             {
@@ -74,7 +79,6 @@
                         yPosition[0]++;
                         break;
                 }
-
                 #endregion
 
                 #region Playing Game
@@ -117,7 +121,7 @@
 
                 #endregion
             } while (isGameOn);
-
+            #endregion
 
 
 
