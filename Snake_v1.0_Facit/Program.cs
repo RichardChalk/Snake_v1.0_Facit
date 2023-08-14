@@ -72,7 +72,6 @@
                 Console.WriteLine("ö");
 
                 // Känner av när snake (head) träffa väggen
-                // Slow game down
                 isWallHit = DidSnakeHitWall(xPosition[0], yPosition[0]);
 
                 if (isWallHit)
@@ -102,6 +101,8 @@
                 }
 
                 if (Console.KeyAvailable) command = Console.ReadKey().Key;
+
+                // Slow game down
                 System.Threading.Thread.Sleep(Convert.ToInt32(gameSpeed));
             } while (isGameOn);
 
