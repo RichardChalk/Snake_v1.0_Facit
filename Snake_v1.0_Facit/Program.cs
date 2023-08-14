@@ -18,6 +18,9 @@
             int applesEaten = 0;
             Random random = new Random();
 
+            // Ta bort cursor... endast estetiskt
+            Console.CursorVisible = false;
+
             decimal gameSpeed = 150m;
 
             bool isGameOn = true;
