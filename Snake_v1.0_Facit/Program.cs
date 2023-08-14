@@ -12,7 +12,7 @@
             xPosition[0] = 35;
             int[] yPosition = new int[50];
             yPosition[0] = 20;
-                        
+
             int xPositionApple = 10;
             int yPositionApple = 10;
             int applesEaten = 0;
@@ -24,10 +24,8 @@
             bool isWallHit = false;
             bool isAppleEaten = false;
 
-            // Visa snake på skrämen
-            Console.SetCursorPosition(xPosition[0], yPosition[0]);
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("ö");
+            // Visa new snake array på skrämen
+            PaintSnake(applesEaten, xPosition, yPosition, out xPosition, out yPosition);
 
             // Placera FÖRSTA äpplet random ställe på skärmen
             // out - ändrar de globala variabler också (inte bara de lokala inom metoden)
@@ -84,7 +82,7 @@
 
                 // Känner av om äpplet har ätits upp av snake
                 isAppleEaten = DetermineIfAppleIsEaten(xPosition[0], yPosition[0], xPositionApple, yPositionApple);
-                
+
                 if (isAppleEaten)
                 {
                     // Placera äpple random ställe på skärmen
@@ -109,10 +107,10 @@
 
 
 
-            
-            
-            // Gör snake längre
-            
+
+
+
+
 
             // Gör en välkomstskärm (meny)
 
@@ -126,12 +124,29 @@
         private static void PaintSnake(int applesEaten, int[] xPositionIn, int[] yPositionIn, out int[] xPositionOut, out int[] yPositionOut)
         {
             // Rita ut snake huvud
+            Console.SetCursorPosition(xPositionIn[0], yPositionIn[0]);
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("ö");
 
+            // Gör snake längre
             // Rita ut snake kropp
+            for (int i = 1; i < applesEaten + 1; i++)
+            {
+                Console.SetCursorPosition(xPositionIn[i], yPositionIn[i]);
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("o");
+            }
 
             // Radera svansen av snake
+            Console.SetCursorPosition(xPositionIn[applesEaten + 1], yPositionIn[applesEaten + 1]);
+            Console.WriteLine(" ");
 
             // Notera varje del av snake
+            for (int i = applesEaten + 1; i > 0; i--)
+            {
+                xPositionIn[i] = xPositionIn[i - 1];
+                yPositionIn[i] = yPositionIn[i - 1];
+            }
 
             // Returnera snake nya position
             xPositionOut = xPositionIn;
