@@ -37,6 +37,14 @@
             // Gör en välkomstskärm (meny)
             // Låt spelaren läser instruktionerna om han vill
             ShowMenu(out userAction);
+            switch (userAction)
+            {
+                case "1":
+                    ShowInstructions(userAction);
+                    break;
+                default:
+                    break;
+            }
 
             #region Game Setup
             // Visa new snake array på skrämen
@@ -141,6 +149,8 @@
 
             // Låt spelaren välja att spela igen
         }
+
+       
         #region Menu
         private static void ShowMenu(out string userAction)
         {
@@ -149,6 +159,25 @@
             Console.WriteLine("3: Exit");
 
             userAction = Console.ReadLine().ToLower();
+        }
+
+        private static void ShowInstructions(string userAction)
+        {
+            Console.Clear();
+            BuildWall();
+            Console.SetCursorPosition(12, 5);
+            Console.WriteLine("Använd pilarna för att flytta ormen runt banan");
+            Console.SetCursorPosition(16, 7);
+            Console.WriteLine("Ormen dör om den träffar yttreväggen");
+            Console.SetCursorPosition(20, 9);
+            Console.WriteLine("Ät äpplen för att få poäng!");
+            Console.SetCursorPosition(13, 11);
+            Console.WriteLine("Varje äpple gör ormen längre och snabbare!");
+            Console.SetCursorPosition(14, 13);
+            Console.WriteLine("Tryck på valfri knapp för att fortsätta");
+            Console.ReadLine();
+            Console.Clear();
+            ShowMenu(out userAction);
         }
         #endregion
 
