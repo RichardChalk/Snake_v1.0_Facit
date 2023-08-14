@@ -34,6 +34,7 @@
             bool isStayInMenu = true;
             #endregion
 
+            #region Call Menu
             // Gör en välkomstskärm (meny)
             // Låt spelaren läser instruktionerna om han vill
             ShowMenu(out userAction);
@@ -45,6 +46,7 @@
                 default:
                     break;
             }
+            #endregion
 
             #region Game Setup
             // Visa new snake array på skrämen
@@ -180,7 +182,6 @@
             ShowMenu(out userAction);
         }
         #endregion
-
 
         #region Methods
         private static void PaintSnake(int applesEaten, int[] xPositionIn, int[] yPositionIn, out int[] xPositionOut, out int[] yPositionOut)
