@@ -127,6 +127,11 @@
                                 Console.SetCursorPosition(20, 24);
                                 Console.WriteLine("Tryck på valfri knapp för att fortsätta");
                                 applesEaten = 0;
+
+                                // Raderar äpplet vid game over
+                                Console.SetCursorPosition(xPositionApple, yPositionApple);
+                                Console.Write(" ");
+
                                 Console.ReadLine();
                                 Console.Clear();
 
