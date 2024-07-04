@@ -10,6 +10,20 @@ namespace Snake_v1._0_Facit
     {
         internal void GoGame()
         {
+            // Option #1
+            // OBS: Måste se till att ditt console fönster är rätt storlek
+            // Min är satt till 120 * 50
+            // 1. Högerklick på console fönstret -> Settings
+            // 2. Under Startup -> Launch Size
+
+            // Option #2
+            // ELLER... Man kan ändra storleken på konsolfönstret med C# kod (se nedan)!
+            // Sedan Windows 11 måste man också se till att välja "Windows Console Host"
+            // 1. Högerklick på console fönstret -> Settings
+            // 2. Under Startup -> Default terminal application -> Windows Console Host
+            //Console.SetBufferSize(120, 50);
+            //Console.SetWindowSize(120, 50);
+
             // Att lägga till regions kan göra koden lättare att läsa
             // Nu får jag möjlighet att "kollapsa" denna region om jag vill
             #region Variables
@@ -281,10 +295,6 @@ namespace Snake_v1._0_Facit
 
         private static void BuildWall()
         {
-            // OBS: Måste se till att ditt console fönster är rätt storlek
-            // Min är satt till 120 * 60
-            // Högerklick på console fönstret -> settings
-            // Under Startup -> Launch Size
             for (int i = 1; i <= 40; i++)
             {
                 // Bygg lodrätta väggar
