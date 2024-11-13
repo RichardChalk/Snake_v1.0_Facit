@@ -21,8 +21,9 @@ namespace Snake_v1._0_Facit
             // Sedan Windows 11 måste man också se till att välja "Windows Console Host"
             // 1. Högerklick på console fönstret -> Settings
             // 2. Under Startup -> Default terminal application -> Windows Console Host
-            //Console.SetBufferSize(120, 50);
-            //Console.SetWindowSize(120, 50);
+            Console.SetWindowSize(120, 50);
+            Console.SetBufferSize(120, 50);
+            
 
             // Att lägga till regions kan göra koden lättare att läsa
             // Nu får jag möjlighet att "kollapsa" denna region om jag vill
@@ -52,6 +53,8 @@ namespace Snake_v1._0_Facit
             bool isWallHit = false;
             bool isAppleEaten = false;
             bool isStayInMenu = true;
+
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
             #endregion
 
             #region Call Menu
